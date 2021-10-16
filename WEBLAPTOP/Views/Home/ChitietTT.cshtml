@@ -1,0 +1,46 @@
+﻿@using WEBLAPTOP.Models
+@{
+    ViewBag.Title = "ChitietTT";
+    Layout = "~/Views/Shared/_Layout - Tintuc.cshtml";
+    tintuc cttt = ViewBag.Tintucs;
+    
+}
+<style>
+    .col-md-8
+    {
+        margin-left:350px;
+    }
+    .like
+    {
+        margin-top:10px;
+    }
+    .img
+    {
+        margin-top:20px;
+      
+    }
+   
+</style>
+    <div class="row">
+        <div id="content-left" class="col-md-8">
+            <div>
+                <div class="tieude">
+                    <h3>@cttt.tieude</h3>
+                </div>
+                <div style="font-size:14px;">
+                    <i>@cttt.nguoidang (@cttt.ngaydang)</i>
+                </div>
+                @*<div class="like">
+                    <button class="btn btn-primary"><i class="far fa-thumbs-up"></i> Thích  0</button>
+                    <button class="btn btn-primary">Chia sẻ</button>
+                </div>*@
+                <div class="img" style="text-align:center;margin-bottom:30px">
+                    <img src="~/IMG/@cttt.img" />
+                </div>
+                <div style="text-align:justify;line-height:40px;color:#707070;font-size:14px;">
+                    <h5>@cttt.noidungCT</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+

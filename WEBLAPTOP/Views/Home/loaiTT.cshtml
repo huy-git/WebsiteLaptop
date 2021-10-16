@@ -1,0 +1,51 @@
+﻿@using WEBLAPTOP.Models
+@{
+    ViewBag.Title = "loaiTT";
+    Layout = "~/Views/Shared/_Layout - LoaiTT.cshtml";
+    List<loaiTT> LOAI = ViewBag.loaitts;
+}
+<style>
+    #LTT
+    {
+        margin-right:50px;
+    }
+</style>
+<div id="tintuc" class="col-md-12 row">
+    @foreach (var ite in LOAI)
+    {
+        <div class="tt col-md-8 row">
+
+            @foreach (var tin in ite.tintucs)
+            {
+                <div class="col-md-2"><img src="~/IMG/@tin.img" style="margin-left: 30px;margin-bottom: 50px;" /></div>
+                <div class="col-md-6" style="margin-left:200px">
+                    <p class="p-1">@tin.tieude</p>
+                    <i class="i">@tin.nguoidang (@tin.ngaydang) </i>
+                    <p class="p-2">@tin.noidung</p>
+                    <a class="link" href="/Home/ChitietTT?matt=@tin.maTT" style="margin-top:-20px;">Xem chi tiết <i class="fa fa-angle-double-right"></i></a>
+                </div>
+            }
+        </div>
+
+        <div id="LTT" class="col-md-3">
+
+            <div id="TD">
+                <i class="fas fa-bars">&nbsp;  Tin tức</i>
+            </div>
+            <div id="LT" class=" row">
+                <ul>
+                    <li @*onclick="filting()"*@ class="new">
+                        <i class="far fa-newspaper"></i>
+
+                        <a href="/Home/Tintuc?valFil=@ite.tenLoaiTT">
+                            @ite.tenLoaiTT
+                        </a>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </div>
+    }
+</div>

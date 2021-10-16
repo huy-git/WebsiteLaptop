@@ -1,0 +1,297 @@
+﻿@model List<WEBLAPTOP.Models.DH>
+@{
+    ViewBag.Title = "Donhang";
+    Layout = "~/Areas/Admin/Views/Shared/_admin.cshtml";
+}
+
+    <style>
+        #Datatables thead tr th {
+            text-align: center
+        }
+
+     
+        .anh img {
+            width: 100px;
+        }
+
+        .action {
+            margin-top: 200px
+        }
+
+        #SetAdminList td {
+            margin-top: 100px;
+        }
+
+        .content {
+            margin-left: 300px;
+        }
+        .content
+        {
+            margin-left:40px;
+            margin-right:20px;
+        }
+</style>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Danh sách đơn hàng</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    @*<div class="box-header">
+                        <h3 style="padding-bottom:15px;color:red;" class="box-title">Danh sách hiển thị Đơn Hàng</h3>
+                        <a href="#" class="btn btn-primary" onclick="them()">Add</a>
+                    </div>*@
+                    <!-- /.box-header -->
+
+                    <table class="dataTable table table-striped table-bordered" id="Datatables">
+                        <thead>
+                            <tr>
+                                <th>Họ và Tên</th>
+                                <th>Thành tiền</th>
+                                <th>Ngày bán</th>
+                                
+                                <th>Địa chỉ khách hàng</th>
+                                <th>Địa chỉ giao hàng</th>
+                                <th>Số điện thoại khách hàng</th>
+                                <th>Số điện người nhận</th>
+                                <th>Căn cước công dân khách hàng</th>
+                                <th>Căn cước công dân nhận hàng</th>
+                                <th>Tài khoản ngân hàng</th>
+                                <th>Tổng số tiền</th>
+                                <th>Tiền VAT</th>
+                                <th>Trạng thái đơn hàng</th>
+                                @*<th>Action(Edit)</th>
+                                <th>Action(Delete)</th>*@
+
+                            </tr>
+                        </thead>
+
+                        <tbody id="SetAdminList">
+                            @if (Model != null && Model.Count() > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                            <tr>
+                                <td>@item.hovaten</td>
+                                <td>@item.Thanhtien</td>
+                                <td>@item.Ngayban</td>
+
+                                <td>@item.diachikhachhang</td>
+                                <td>@item.diachigiaohang</td>
+                                <td>@item.sodienthoaikhachhang</td>
+                                <td>@item.sodiennguoinhan</td>
+                                <td>@item.socmtndkh</td>
+                                <td>@item.socmtndnguoinhan</td>
+                                <td>@item.taikhoannh</td>
+                                <td>@item.tongsotien</td>
+                                <td>@item.tienvat</td>
+                                <td>@item.trangthaidonhang</td>
+                                @*<td class="action" style="text-align:center">
+            <button onclick="return getbymaNV(@item.maDH);" class="btn btn-warning fa fa-pencil"></button>
+        </td>
+        <td class="action" style="text-align:center;">
+            <a class="btn btn-danger fa fa-trash" onclick="return xoa(@item.maDH);"></a>
+        </td>*@
+                            </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                @*chạy thư viện trước*@
+                <script src="~/Asset/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
+                <script src="~/Asset/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+                <script src="~/Asset/Admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+                <script src="~/Asset/Admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+                @*Xong mới chạy table*@
+
+            </div>
+        </div>
+    </section>
+    @*<div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <label>Mã Đơn Hàng</label>
+                        <input type="text" id="maDH" placeholder="nhap ma don hang" class="form-control" />
+                        <br />
+                        <label>Mã Nhân viên</label>
+                        <input type="text" id="maNV" placeholder="nhap ma nhan vien" class="form-control" />
+                        <br />
+                        <label>Mã Khách Hàng</label>
+                        <input type="text" id="maKH" placeholder="nhap ma khach hang" required class="form-control" />
+                        <br />
+                        <label>Thanh Tien</label>
+                        <input type="text" id="Thanhtien" placeholder="nhap so tien" required class="form-control" />
+                        <br />
+                        <label>Ngay Ban</label>
+                        <input type="date" id="Ngayban" placeholder="nhap ngay ban" required class="form-control" />
+                        <br />
+
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary " data-dismiss="modal">Close</button>
+                    <button type="button" id="btnAdd" onclick="return _add();" class="btn btn-success ">Lưu thông tin </button>
+
+                    <button type="button" id="btnUpdate" onclick="return edit();" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+             /.modal-content 
+        </div>
+    </div>*@
+</body>
+</html>
+<script>
+    function them() {
+        $('#maDH').val('');
+        $('#maNV').val('');
+        $('#maKH').val('');
+        $('#Thanhtien').val('');
+        $('#Ngayban').val('');
+        $('#btnAdd').val('show');
+        $('#myModal').modal("show");//hien thi table
+        $('.modal-title').html('Thêm thông tin');//them thong tin
+        $('#btnUpdate').hide();
+    }
+     function sua() {
+         var maDH = $(this).data('maDH');
+         getbymaDH(maDH);
+        $('#btnUpdate').val('show');
+        $('#myModal').modal("show");//hien thi table
+        $('.modal-title').html('Thêm thông tin');//them thong tin
+        $('#btnAdd').hide();
+    }
+    //
+    function _add() {
+        var obj = {
+            maDH:$('#maDH').val(),
+            maNV: $('#maNV').val(),
+            maKH: $('#maKH').val(),
+            Thanhtien: $('#Thanhtien').val(),
+            Ngayban: $('#Ngayban').val()
+
+        }
+        $.ajax({
+            url: "/Admin/DH/create",
+            data: JSON.stringify(obj),
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                // $('#myModal').modal('hide');
+
+                location.reload();//load lai trang
+                alert("đã thêm thành công");
+                //window.location = data.action;
+
+            },
+            error: function (errmessage) {
+                alert(errmessage.responseText);
+            }
+        });
+    }
+    function getbymaDH(maDH) {
+        $.ajax({
+            type: 'POST',
+            url: '/Donhang/get',
+            dataType: 'json',
+            data: {
+                maDH: maDH
+            },
+            success: function (data) {
+                $('#maDH').val(data.dt.maDH);
+                $('#maNV').val(data.dt.maNV);
+                $('#maKH').val(data.dt.maKH);
+                $('#Thanhtien').val(data.dt.Thanhtien);
+                 $('#Ngayban').val(data.dt.Ngayban);
+
+                //
+                $('#myModal').modal('show');
+                $('#btnAdd').hide();
+                $('.modal-title').html('Sửa bản ghi');
+                $('#btnUpdate').show();
+            },
+            error: function (data) {
+
+                showmessage("Error:", data.message);
+            },
+
+        });
+    }
+    function edit() {
+        var obj = {
+
+           maDH:$('#maDH').val(),
+            maNV: $('#maNV').val(),
+            maKH: $('#maKH').val(),
+            Thanhtien: $('#Thanhtien').val(),
+            Ngayban: $('#Ngayban').val()
+
+        }
+        $.ajax({
+            url: '/DH/edit',
+            data: JSON.stringify(obj),
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                alert("đã sửa thành công");
+                location.reload();
+
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+    //xoa
+    function xoa(maDH) {
+        var cf = confirm("Bạn có muốn xóa không ?");
+        if (cf) {
+            $.ajax({
+                type: "post",
+                url: '/DH/delete',
+                datatype: "json",
+                data: {
+                    maDH: maDH,//controler
+                },
+                success: function (data) {
+                    location.reload();
+                    //alert(data.dt.id);
+                    alert("OK ! xóa thành công.");
+
+                },
+                error: function (data) {
+                    alert("khong thể xóa");
+                    showmessage("Error:", data.message);
+                },
+            });
+        }
+    }
+</script>
+
+
+
+

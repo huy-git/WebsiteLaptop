@@ -1,0 +1,22 @@
+﻿.bodycontent {
+    display: flex;
+}
+
+.left1 {
+    height: 1700px;
+    background-color: #343a40;
+}
+
+.tittle {
+    height: 75px;
+    border-bottom: 2px solid gray;
+}
+
+.user {
+    height: 60px;
+    border-bottom: 2px solid gray;
+}
+
+p {
+    color: white;
+}

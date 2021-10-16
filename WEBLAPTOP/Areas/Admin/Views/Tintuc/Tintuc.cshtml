@@ -1,0 +1,270 @@
+﻿@model List<WEBLAPTOP.Models.tintuc>
+@{
+    ViewBag.Title = "Tintuc";
+    Layout = "~/Areas/Admin/Views/Shared/_admin.cshtml";
+}
+
+<style>
+    #Datatables thead tr th {
+        text-align: center
+    }
+    .content
+    {
+        margin-left:100px;
+        margin-right:200px;
+    }
+</style>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Danh sách tin tức</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 style="padding-bottom:15px;color:red;" class="box-title">Danh sách hiển thị Nhân Viên</h3>
+                        <a href="#" class="btn btn-primary" onclick="them()">Add</a>
+                    </div>
+                    <!-- /.box-header -->
+
+                    <table class="dataTable table table-striped table-bordered" id="Datatables">
+                        <thead>
+                            <tr>
+                                <th>Mã Nhân Viên</th>
+                                <th>Tiêu đề</th>
+                                <th>Người đăng</th>
+                                <th>Ngày đăng</th>
+                                <th>Nội dung</th>
+                                <th>Nội dung chi tiết</th>
+                                <th>Action(Edit)</th>
+                                <th>Action(Delete)</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody id="SetAdminList">
+                            @if (Model != null && Model.Count() > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                            <tr>
+                                <td>@item.maNV</td>
+                                <td>@item.tieude</td>
+                                <td>@item.nguoidang</td>
+                                <td>@item.ngaydang</td>
+                                <td>@item.noidung</td>
+                                <td>@item.noidungCT</td>
+                                <td class="action" style="text-align:center">
+                                    <button onclick="return getbymaNV(@item.maTT);" class="btn btn-warning fa fa-pencil"></button>
+                                </td>
+                                <td class="action" style="text-align:center;">
+                                    <a class="btn btn-danger fa fa-trash" onclick="return xoa(@item.maTT);"></a>
+                                </td>
+                            </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                @*chạy thư viện trước*@
+                <script src="~/Asset/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
+                <script src="~/Asset/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+                <script src="~/Asset/Admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+                <script src="~/Asset/Admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+                @*Xong mới chạy table*@
+
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <label>Mã Nhân Viên</label>
+                        <input type="text" id="maNV" placeholder="nhap ten nhan vien" class="form-control" />
+                        <br />
+                        <label>Tiêu đề</label>
+                        <input type="text" id="tieude" placeholder="nhap tieu de" class="form-control" />
+                        <br />
+                        <label>Người đăng</label>
+                        <input type="text" id="nguoidang" placeholder="nhap ten nguoi dang" class="form-control" />
+                        <br />
+                        <label>Ngày đăng</label>
+                        <input type="text" id="ngaydang" placeholder="nhap ngay dang" required class="form-control" />
+                        <br />
+                        <label>Nội dung</label>
+                        <input type="text" id="noidung" placeholder="nhap noi dung" required class="form-control" />
+                        <br />
+                        <label>Nội dung chi tiết</label>
+                        <input type="text" id="noidungCT" placeholder="nhap noi dung chi tiet" required class="form-control" />
+                        <br />
+
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-primary " data-dismiss="modal">Close</button>*@
+                    <button type="button" id="btnAdd" onclick="return _add();" class="btn btn-success ">Lưu thông tin </button>
+
+                    <button type="button" id="btnUpdate" onclick="return edit();" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function them() {
+        $('#maTT').val('');
+        $('#maNV').val('');
+        $('#tieude').val('');
+        $('#nguoidang').val('');
+        $('#ngaydang').val('');
+        $('#noidung').val('');
+        $('#noidungCT').val('');
+        $('#maLoaiTT').val('');
+        $('#btnAdd').val('show');
+        $('#myModal').modal("show");//hien thi table
+        $('.modal-title').html('Thêm thông tin');//them thong tin
+        $('#btnUpdate').hide();
+    }
+    //
+    function _add() {
+        var obj = {
+           maTT:$('#maTT').val(),
+            maNV: $('#maNV').val(),
+            tieude: $('#tieude').val(),
+            nguoidang: $('#nguoidang').val(),
+            ngaydang: $('#ngaydang').val(),
+            noidung: $('#noidung').val(),
+            noidungCT: $('#noidungCT').val(),
+            maLoaiTT: $('#maLoaiTT').val()
+
+        }
+        $.ajax({
+            url: "/Admin/Tintuc/create",
+            data: JSON.stringify(obj),
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                // $('#myModal').modal('hide');
+
+                location.reload();//load lai trang
+                alert("đã thêm thành công");
+                //window.location = data.action;
+
+            },
+            error: function (errmessage) {
+                alert(errmessage.responseText);
+            }
+        });
+    }
+    function getbymaTT(maTT) {
+        $.ajax({
+            type: 'POST',
+            url: '/Tintuc/get',
+            dataType: 'json',
+            data: {
+                maTT: maTT
+            },
+            success: function (data) {
+                $('#maTT').val(data.dt.maTT);
+                $('#maNV').val(data.dt.maNV);
+                $('#tieude').val(data.dt.tieude);
+                $('#nguoidang').val(data.dt.nguoidang);
+                $('#ngaydang').val(data.dt.ngaydang);
+                $('#noidung').val(data.dt.noidung);
+                $('#noidungCT').val(data.dt.noidungCT);
+                $('#maLoaiTT').val(data.dt.maLoaiTT);
+                //
+                $('#myModal').modal('show');
+                $('#btnAdd').hide();
+                $('.modal-title').html('Sửa bản ghi');
+                $('#btnUpdate').show();
+            },
+            error: function (data) {
+
+                showmessage("Error:", data.message);
+            },
+
+        });
+    }
+    function edit() {
+        var obj = {
+
+            maTT: $('#maTT').val(),
+            maNV: $('#maNV').val(),
+            tieude: $('#tieude').val(),
+            nguoidang: $('#nguoidang').val(),
+            ngaydang: $('#ngaydang').val(),
+            noidung: $('#noidung').val(),
+            noidungCT: $('#noidungCT').val(),
+            maLoaiTT: $('#maLoaiTT').val()
+
+        }
+        $.ajax({
+            url: '/Tintuc/edit',
+            data: JSON.stringify(obj),
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                alert("đã sửa thành công");
+                location.reload();
+
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+    //xoa
+    function xoa(maTT) {
+        var cf = confirm("Bạn có muốn xóa không ?");
+        if (cf) {
+            $.ajax({
+                type: "post",
+                url: '/Tintuc/delete',
+                datatype: "json",
+                data: {
+                    maTT: maTT,//controler
+                },
+                success: function (data) {
+                    location.reload();
+                    //alert(data.dt.id);
+                    alert("OK ! xóa thành công.");
+
+                },
+                error: function (data) {
+                    alert("khong thể xóa");
+                    showmessage("Error:", data.message);
+                },
+            });
+        }
+    }
+</script>
+
+
+
+

@@ -1,0 +1,933 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QUANLILAPTOPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CTDHB">
+          <Key>
+            <PropertyRef Name="maCTDH" />
+          </Key>
+          <Property Name="maDH" Type="nvarchar" MaxLength="100" />
+          <Property Name="maCTDH" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="maSP" Type="nvarchar" MaxLength="10" />
+          <Property Name="Giaban" Type="int" />
+          <Property Name="thanhtien" Type="int" />
+        </EntityType>
+        <EntityType Name="CTHDN">
+          <Key>
+            <PropertyRef Name="maCTHDN" />
+          </Key>
+          <Property Name="maHDN" Type="nvarchar" MaxLength="10" />
+          <Property Name="maCTHDN" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="maSP" Type="nvarchar" MaxLength="10" />
+          <Property Name="Soluong" Type="int" />
+          <Property Name="Gianhap" Type="decimal" Precision="18" Scale="6" />
+        </EntityType>
+        <EntityType Name="CTSP">
+          <Key>
+            <PropertyRef Name="maCTSP" />
+          </Key>
+          <Property Name="maSP" Type="nvarchar" MaxLength="10" />
+          <Property Name="maCTSP" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CPU" Type="nvarchar" MaxLength="500" />
+          <Property Name="RAM" Type="nvarchar" MaxLength="500" />
+          <Property Name="HDD" Type="nvarchar" MaxLength="500" />
+          <Property Name="VGA" Type="nvarchar" MaxLength="500" />
+          <Property Name="Screem" Type="nvarchar" MaxLength="500" />
+          <Property Name="PIN" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="DH">
+          <Key>
+            <PropertyRef Name="maDH" />
+          </Key>
+          <Property Name="maDH" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="maKH" Type="nvarchar" MaxLength="10" />
+          <Property Name="maNV" Type="nvarchar" MaxLength="10" />
+          <Property Name="Thanhtien" Type="int" />
+          <Property Name="Ngayban" Type="date" />
+          <Property Name="hovaten" Type="nvarchar" MaxLength="50" />
+          <Property Name="diachikhachhang" Type="nvarchar" MaxLength="100" />
+          <Property Name="diachigiaohang" Type="nvarchar" MaxLength="100" />
+          <Property Name="sodienthoaikhachhang" Type="nvarchar" MaxLength="50" />
+          <Property Name="sodiennguoinhan" Type="nvarchar" MaxLength="50" />
+          <Property Name="socmtndkh" Type="nvarchar" MaxLength="50" />
+          <Property Name="socmtndnguoinhan" Type="nvarchar" MaxLength="50" />
+          <Property Name="taikhoannh" Type="nvarchar" MaxLength="50" />
+          <Property Name="tongsotien" Type="int" />
+          <Property Name="tienvat" Type="int" />
+          <Property Name="trangthaidonhang" Type="int" />
+        </EntityType>
+        <EntityType Name="HDN">
+          <Key>
+            <PropertyRef Name="maHDN" />
+          </Key>
+          <Property Name="maHDN" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="maNCC" Type="nvarchar" MaxLength="10" />
+          <Property Name="maNV" Type="nvarchar" MaxLength="10" />
+          <Property Name="Thanhtien" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="Ngaynhap" Type="date" />
+        </EntityType>
+        <EntityType Name="Khachhang">
+          <Key>
+            <PropertyRef Name="maKH" />
+          </Key>
+          <Property Name="maKH" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="tenKH" Type="nvarchar" MaxLength="50" />
+          <Property Name="Diachi" Type="nvarchar" MaxLength="50" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="LoaiSP">
+          <Key>
+            <PropertyRef Name="maLoai" />
+          </Key>
+          <Property Name="maLoai" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="tenLoai" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="loaiTT">
+          <Key>
+            <PropertyRef Name="maLoaiTT" />
+          </Key>
+          <Property Name="maLoaiTT" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="tenLoaiTT" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="NCC">
+          <Key>
+            <PropertyRef Name="maNCC" />
+          </Key>
+          <Property Name="maNCC" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="tenNCC" Type="nvarchar" MaxLength="50" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="11" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Nhanvien">
+          <Key>
+            <PropertyRef Name="maNV" />
+          </Key>
+          <Property Name="maNV" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="tenNV" Type="nvarchar" MaxLength="50" />
+          <Property Name="Chucvu" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sanpham">
+          <Key>
+            <PropertyRef Name="maSP" />
+          </Key>
+          <Property Name="maLoai" Type="nvarchar" MaxLength="10" />
+          <Property Name="maSP" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="tenSP" Type="nvarchar" MaxLength="300" />
+          <Property Name="Giaban" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="Hinhanh" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tintuc">
+          <Key>
+            <PropertyRef Name="maTT" />
+          </Key>
+          <Property Name="maTT" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="maNV" Type="nvarchar" MaxLength="10" />
+          <Property Name="tieude" Type="nvarchar" MaxLength="500" />
+          <Property Name="nguoidang" Type="nvarchar" MaxLength="50" />
+          <Property Name="ngaydang" Type="date" />
+          <Property Name="noidung" Type="nvarchar" MaxLength="500" />
+          <Property Name="noidungCT" Type="nvarchar(max)" />
+          <Property Name="img" Type="nvarchar" MaxLength="50" />
+          <Property Name="maLoaiTT" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_CTDHB_DH">
+          <End Role="DH" Type="Self.DH" Multiplicity="0..1" />
+          <End Role="CTDHB" Type="Self.CTDHB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DH">
+              <PropertyRef Name="maDH" />
+            </Principal>
+            <Dependent Role="CTDHB">
+              <PropertyRef Name="maDH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CTDHB_Sanpham">
+          <End Role="Sanpham" Type="Self.Sanpham" Multiplicity="0..1" />
+          <End Role="CTDHB" Type="Self.CTDHB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sanpham">
+              <PropertyRef Name="maSP" />
+            </Principal>
+            <Dependent Role="CTDHB">
+              <PropertyRef Name="maSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CTHDN_HDN">
+          <End Role="HDN" Type="Self.HDN" Multiplicity="0..1" />
+          <End Role="CTHDN" Type="Self.CTHDN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HDN">
+              <PropertyRef Name="maHDN" />
+            </Principal>
+            <Dependent Role="CTHDN">
+              <PropertyRef Name="maHDN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CTHDN_Sanpham">
+          <End Role="Sanpham" Type="Self.Sanpham" Multiplicity="0..1" />
+          <End Role="CTHDN" Type="Self.CTHDN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sanpham">
+              <PropertyRef Name="maSP" />
+            </Principal>
+            <Dependent Role="CTHDN">
+              <PropertyRef Name="maSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CTSP_Sanpham">
+          <End Role="Sanpham" Type="Self.Sanpham" Multiplicity="0..1" />
+          <End Role="CTSP" Type="Self.CTSP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sanpham">
+              <PropertyRef Name="maSP" />
+            </Principal>
+            <Dependent Role="CTSP">
+              <PropertyRef Name="maSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DH_Khachhang">
+          <End Role="Khachhang" Type="Self.Khachhang" Multiplicity="0..1" />
+          <End Role="DH" Type="Self.DH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khachhang">
+              <PropertyRef Name="maKH" />
+            </Principal>
+            <Dependent Role="DH">
+              <PropertyRef Name="maKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DH_Nhanvien">
+          <End Role="Nhanvien" Type="Self.Nhanvien" Multiplicity="0..1" />
+          <End Role="DH" Type="Self.DH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nhanvien">
+              <PropertyRef Name="maNV" />
+            </Principal>
+            <Dependent Role="DH">
+              <PropertyRef Name="maNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDN_NCC">
+          <End Role="NCC" Type="Self.NCC" Multiplicity="0..1" />
+          <End Role="HDN" Type="Self.HDN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NCC">
+              <PropertyRef Name="maNCC" />
+            </Principal>
+            <Dependent Role="HDN">
+              <PropertyRef Name="maNCC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDN_Nhanvien">
+          <End Role="Nhanvien" Type="Self.Nhanvien" Multiplicity="0..1" />
+          <End Role="HDN" Type="Self.HDN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nhanvien">
+              <PropertyRef Name="maNV" />
+            </Principal>
+            <Dependent Role="HDN">
+              <PropertyRef Name="maNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sanpham_LoaiSP">
+          <End Role="LoaiSP" Type="Self.LoaiSP" Multiplicity="0..1" />
+          <End Role="Sanpham" Type="Self.Sanpham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiSP">
+              <PropertyRef Name="maLoai" />
+            </Principal>
+            <Dependent Role="Sanpham">
+              <PropertyRef Name="maLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tintuc_loaiTT1">
+          <End Role="loaiTT" Type="Self.loaiTT" Multiplicity="0..1" />
+          <End Role="tintuc" Type="Self.tintuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loaiTT">
+              <PropertyRef Name="maLoaiTT" />
+            </Principal>
+            <Dependent Role="tintuc">
+              <PropertyRef Name="maLoaiTT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tintuc_Nhanvien">
+          <End Role="Nhanvien" Type="Self.Nhanvien" Multiplicity="0..1" />
+          <End Role="tintuc" Type="Self.tintuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nhanvien">
+              <PropertyRef Name="maNV" />
+            </Principal>
+            <Dependent Role="tintuc">
+              <PropertyRef Name="maNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLILAPTOPModelStoreContainer">
+          <EntitySet Name="CTDHB" EntityType="Self.CTDHB" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CTHDN" EntityType="Self.CTHDN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CTSP" EntityType="Self.CTSP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DH" EntityType="Self.DH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HDN" EntityType="Self.HDN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Khachhang" EntityType="Self.Khachhang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiSP" EntityType="Self.LoaiSP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="loaiTT" EntityType="Self.loaiTT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NCC" EntityType="Self.NCC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nhanvien" EntityType="Self.Nhanvien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sanpham" EntityType="Self.Sanpham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tintuc" EntityType="Self.tintuc" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CTDHB_DH" Association="Self.FK_CTDHB_DH">
+            <End Role="DH" EntitySet="DH" />
+            <End Role="CTDHB" EntitySet="CTDHB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTDHB_Sanpham" Association="Self.FK_CTDHB_Sanpham">
+            <End Role="Sanpham" EntitySet="Sanpham" />
+            <End Role="CTDHB" EntitySet="CTDHB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTHDN_HDN" Association="Self.FK_CTHDN_HDN">
+            <End Role="HDN" EntitySet="HDN" />
+            <End Role="CTHDN" EntitySet="CTHDN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTHDN_Sanpham" Association="Self.FK_CTHDN_Sanpham">
+            <End Role="Sanpham" EntitySet="Sanpham" />
+            <End Role="CTHDN" EntitySet="CTHDN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTSP_Sanpham" Association="Self.FK_CTSP_Sanpham">
+            <End Role="Sanpham" EntitySet="Sanpham" />
+            <End Role="CTSP" EntitySet="CTSP" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DH_Khachhang" Association="Self.FK_DH_Khachhang">
+            <End Role="Khachhang" EntitySet="Khachhang" />
+            <End Role="DH" EntitySet="DH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DH_Nhanvien" Association="Self.FK_DH_Nhanvien">
+            <End Role="Nhanvien" EntitySet="Nhanvien" />
+            <End Role="DH" EntitySet="DH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDN_NCC" Association="Self.FK_HDN_NCC">
+            <End Role="NCC" EntitySet="NCC" />
+            <End Role="HDN" EntitySet="HDN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDN_Nhanvien" Association="Self.FK_HDN_Nhanvien">
+            <End Role="Nhanvien" EntitySet="Nhanvien" />
+            <End Role="HDN" EntitySet="HDN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sanpham_LoaiSP" Association="Self.FK_Sanpham_LoaiSP">
+            <End Role="LoaiSP" EntitySet="LoaiSP" />
+            <End Role="Sanpham" EntitySet="Sanpham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tintuc_loaiTT1" Association="Self.FK_tintuc_loaiTT1">
+            <End Role="loaiTT" EntitySet="loaiTT" />
+            <End Role="tintuc" EntitySet="tintuc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tintuc_Nhanvien" Association="Self.FK_tintuc_Nhanvien">
+            <End Role="Nhanvien" EntitySet="Nhanvien" />
+            <End Role="tintuc" EntitySet="tintuc" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QUANLILAPTOPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CTHDN">
+          <Key>
+            <PropertyRef Name="maCTHDN" />
+          </Key>
+          <Property Name="maHDN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="maCTHDN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="maSP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Soluong" Type="Int32" />
+          <Property Name="Gianhap" Type="Decimal" Precision="18" Scale="6" />
+          <NavigationProperty Name="HDN" Relationship="Self.FK_CTHDN_HDN" FromRole="CTHDN" ToRole="HDN" />
+          <NavigationProperty Name="Sanpham" Relationship="QUANLILAPTOPModel.FK_CTHDN_Sanpham" FromRole="CTHDN" ToRole="Sanpham" />
+        </EntityType>
+        <EntityType Name="CTSP">
+          <Key>
+            <PropertyRef Name="maCTSP" />
+          </Key>
+          <Property Name="maSP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="maCTSP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CPU" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RAM" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PIN" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sanpham" Relationship="Self.FK_CTSP_Sanpham" FromRole="CTSP" ToRole="Sanpham" />
+          <Property Name="HDD" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="VGA" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Screem" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HDN">
+          <Key>
+            <PropertyRef Name="maHDN" />
+          </Key>
+          <Property Name="maHDN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="maNCC" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="maNV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Thanhtien" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="Ngaynhap" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CTHDNs" Relationship="Self.FK_CTHDN_HDN" FromRole="HDN" ToRole="CTHDN" />
+          <NavigationProperty Name="NCC" Relationship="Self.FK_HDN_NCC" FromRole="HDN" ToRole="NCC" />
+          <NavigationProperty Name="Nhanvien" Relationship="Self.FK_HDN_Nhanvien" FromRole="HDN" ToRole="Nhanvien" />
+        </EntityType>
+        <EntityType Name="Khachhang">
+          <Key>
+            <PropertyRef Name="maKH" />
+          </Key>
+          <Property Name="maKH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Diachi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DHs" Relationship="QUANLILAPTOPModel.FK_DH_Khachhang" FromRole="Khachhang" ToRole="DH" />
+        </EntityType>
+        <EntityType Name="LoaiSP">
+          <Key>
+            <PropertyRef Name="maLoai" />
+          </Key>
+          <Property Name="maLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sanphams" Relationship="Self.FK_Sanpham_LoaiSP" FromRole="LoaiSP" ToRole="Sanpham" />
+        </EntityType>
+        <EntityType Name="NCC">
+          <Key>
+            <PropertyRef Name="maNCC" />
+          </Key>
+          <Property Name="maNCC" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenNCC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HDNs" Relationship="Self.FK_HDN_NCC" FromRole="NCC" ToRole="HDN" />
+        </EntityType>
+        <EntityType Name="Nhanvien">
+          <Key>
+            <PropertyRef Name="maNV" />
+          </Key>
+          <Property Name="maNV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Chucvu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HDNs" Relationship="Self.FK_HDN_Nhanvien" FromRole="Nhanvien" ToRole="HDN" />
+          <NavigationProperty Name="tintucs" Relationship="Self.FK_tintuc_Nhanvien" FromRole="Nhanvien" ToRole="tintuc" />
+          <NavigationProperty Name="DHs" Relationship="QUANLILAPTOPModel.FK_DH_Nhanvien" FromRole="Nhanvien" ToRole="DH" />
+        </EntityType>
+        <EntityType Name="Sanpham">
+          <Key>
+            <PropertyRef Name="maSP" />
+          </Key>
+          <Property Name="maLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="maSP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tenSP" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Giaban" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="Hinhanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CTSPs" Relationship="Self.FK_CTSP_Sanpham" FromRole="Sanpham" ToRole="CTSP" />
+          <NavigationProperty Name="LoaiSP" Relationship="Self.FK_Sanpham_LoaiSP" FromRole="Sanpham" ToRole="LoaiSP" />
+          <NavigationProperty Name="CTHDNs" Relationship="QUANLILAPTOPModel.FK_CTHDN_Sanpham" FromRole="Sanpham" ToRole="CTHDN" />
+          <NavigationProperty Name="CTDHBs" Relationship="QUANLILAPTOPModel.FK_CTDHB_Sanpham" FromRole="Sanpham" ToRole="CTDHB" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tintuc">
+          <Key>
+            <PropertyRef Name="maTT" />
+          </Key>
+          <Property Name="maTT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="maNV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="tieude" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="nguoidang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ngaydang" Type="DateTime" Precision="0" />
+          <Property Name="noidung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="noidungCT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Nhanvien" Relationship="Self.FK_tintuc_Nhanvien" FromRole="tintuc" ToRole="Nhanvien" />
+          <Property Name="maLoaiTT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="loaiTT" Relationship="QUANLILAPTOPModel.FK_tintuc_loaiTT" FromRole="tintuc" ToRole="loaiTT" />
+        </EntityType>
+        <Association Name="FK_CTHDN_HDN">
+          <End Role="HDN" Type="Self.HDN" Multiplicity="0..1" />
+          <End Role="CTHDN" Type="Self.CTHDN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HDN">
+              <PropertyRef Name="maHDN" />
+            </Principal>
+            <Dependent Role="CTHDN">
+              <PropertyRef Name="maHDN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CTSP_Sanpham">
+          <End Role="Sanpham" Type="Self.Sanpham" Multiplicity="0..1" />
+          <End Role="CTSP" Type="Self.CTSP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sanpham">
+              <PropertyRef Name="maSP" />
+            </Principal>
+            <Dependent Role="CTSP">
+              <PropertyRef Name="maSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDN_NCC">
+          <End Role="NCC" Type="Self.NCC" Multiplicity="0..1" />
+          <End Role="HDN" Type="Self.HDN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NCC">
+              <PropertyRef Name="maNCC" />
+            </Principal>
+            <Dependent Role="HDN">
+              <PropertyRef Name="maNCC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDN_Nhanvien">
+          <End Role="Nhanvien" Type="Self.Nhanvien" Multiplicity="0..1" />
+          <End Role="HDN" Type="Self.HDN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nhanvien">
+              <PropertyRef Name="maNV" />
+            </Principal>
+            <Dependent Role="HDN">
+              <PropertyRef Name="maNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sanpham_LoaiSP">
+          <End Role="LoaiSP" Type="Self.LoaiSP" Multiplicity="0..1" />
+          <End Role="Sanpham" Type="Self.Sanpham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiSP">
+              <PropertyRef Name="maLoai" />
+            </Principal>
+            <Dependent Role="Sanpham">
+              <PropertyRef Name="maLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tintuc_Nhanvien">
+          <End Role="Nhanvien" Type="Self.Nhanvien" Multiplicity="0..1" />
+          <End Role="tintuc" Type="Self.tintuc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nhanvien">
+              <PropertyRef Name="maNV" />
+            </Principal>
+            <Dependent Role="tintuc">
+              <PropertyRef Name="maNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QUANLILAPTOPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CTHDNs" EntityType="Self.CTHDN" />
+          <EntitySet Name="CTSPs" EntityType="Self.CTSP" />
+          <EntitySet Name="HDNs" EntityType="Self.HDN" />
+          <EntitySet Name="Khachhangs" EntityType="Self.Khachhang" />
+          <EntitySet Name="LoaiSPs" EntityType="Self.LoaiSP" />
+          <EntitySet Name="NCCs" EntityType="Self.NCC" />
+          <EntitySet Name="Nhanviens" EntityType="Self.Nhanvien" />
+          <EntitySet Name="Sanphams" EntityType="Self.Sanpham" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tintucs" EntityType="Self.tintuc" />
+          <AssociationSet Name="FK_CTHDN_HDN" Association="Self.FK_CTHDN_HDN">
+            <End Role="HDN" EntitySet="HDNs" />
+            <End Role="CTHDN" EntitySet="CTHDNs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTSP_Sanpham" Association="Self.FK_CTSP_Sanpham">
+            <End Role="Sanpham" EntitySet="Sanphams" />
+            <End Role="CTSP" EntitySet="CTSPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDN_NCC" Association="Self.FK_HDN_NCC">
+            <End Role="NCC" EntitySet="NCCs" />
+            <End Role="HDN" EntitySet="HDNs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDN_Nhanvien" Association="Self.FK_HDN_Nhanvien">
+            <End Role="Nhanvien" EntitySet="Nhanviens" />
+            <End Role="HDN" EntitySet="HDNs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sanpham_LoaiSP" Association="Self.FK_Sanpham_LoaiSP">
+            <End Role="LoaiSP" EntitySet="LoaiSPs" />
+            <End Role="Sanpham" EntitySet="Sanphams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tintuc_Nhanvien" Association="Self.FK_tintuc_Nhanvien">
+            <End Role="Nhanvien" EntitySet="Nhanviens" />
+            <End Role="tintuc" EntitySet="tintucs" />
+          </AssociationSet>
+          <EntitySet Name="loaiTTs" EntityType="QUANLILAPTOPModel.loaiTT" />
+          <AssociationSet Name="FK_tintuc_loaiTT" Association="QUANLILAPTOPModel.FK_tintuc_loaiTT">
+            <End EntitySet="loaiTTs" Role="loaiTT" />
+            <End EntitySet="tintucs" Role="tintuc" />
+          </AssociationSet>
+          <EntitySet Name="DHs" EntityType="QUANLILAPTOPModel.DH" />
+          <AssociationSet Name="FK_CTHDN_Sanpham" Association="QUANLILAPTOPModel.FK_CTHDN_Sanpham">
+            <End Role="Sanpham" EntitySet="Sanphams" />
+            <End Role="CTHDN" EntitySet="CTHDNs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DH_Khachhang" Association="QUANLILAPTOPModel.FK_DH_Khachhang">
+            <End Role="Khachhang" EntitySet="Khachhangs" />
+            <End Role="DH" EntitySet="DHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DH_Nhanvien" Association="QUANLILAPTOPModel.FK_DH_Nhanvien">
+            <End Role="Nhanvien" EntitySet="Nhanviens" />
+            <End Role="DH" EntitySet="DHs" />
+          </AssociationSet>
+          <EntitySet Name="CTDHBs" EntityType="QUANLILAPTOPModel.CTDHB" />
+          <AssociationSet Name="FK_CTDHB_DH" Association="QUANLILAPTOPModel.FK_CTDHB_DH">
+            <End Role="DH" EntitySet="DHs" />
+            <End Role="CTDHB" EntitySet="CTDHBs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CTDHB_Sanpham" Association="QUANLILAPTOPModel.FK_CTDHB_Sanpham">
+            <End Role="Sanpham" EntitySet="Sanphams" />
+            <End Role="CTDHB" EntitySet="CTDHBs" />
+          </AssociationSet>
+          <EntitySet Name="logins" EntityType="QUANLILAPTOPModel.login" />
+        </EntityContainer>
+        <EntityType Name="loaiTT">
+          <Key>
+            <PropertyRef Name="maLoaiTT" />
+          </Key>
+          <Property Name="maLoaiTT" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="tenLoaiTT" MaxLength="10" FixedLength="true" Unicode="true" Type="String" />
+          <NavigationProperty Name="tintucs" Relationship="QUANLILAPTOPModel.FK_tintuc_loaiTT" FromRole="loaiTT" ToRole="tintuc" />
+        </EntityType>
+        <Association Name="FK_tintuc_loaiTT">
+          <End Type="QUANLILAPTOPModel.loaiTT" Multiplicity="0..1" Role="loaiTT" />
+          <End Type="QUANLILAPTOPModel.tintuc" Multiplicity="*" Role="tintuc" />
+          <ReferentialConstraint>
+            <Principal Role="loaiTT">
+              <PropertyRef Name="maLoaiTT" />
+            </Principal>
+            <Dependent Role="tintuc">
+              <PropertyRef Name="maLoaiTT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DH">
+          <Key>
+            <PropertyRef Name="maDH" />
+          </Key>
+          <Property Name="maDH" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="maKH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="maNV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Thanhtien" Type="Int32" />
+          <Property Name="Ngayban" Type="DateTime" Precision="0" />
+          <Property Name="hovaten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="diachikhachhang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="diachigiaohang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sodienthoaikhachhang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sodiennguoinhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="socmtndkh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="socmtndnguoinhan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="taikhoannh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tongsotien" Type="Int32" />
+          <Property Name="tienvat" Type="Int32" />
+          <Property Name="trangthaidonhang" Type="Int32" />
+          <NavigationProperty Name="Khachhang" Relationship="QUANLILAPTOPModel.FK_DH_Khachhang" FromRole="DH" ToRole="Khachhang" />
+          <NavigationProperty Name="Nhanvien" Relationship="QUANLILAPTOPModel.FK_DH_Nhanvien" FromRole="DH" ToRole="Nhanvien" />
+          <NavigationProperty Name="CTDHBs" Relationship="QUANLILAPTOPModel.FK_CTDHB_DH" FromRole="DH" ToRole="CTDHB" />
+        </EntityType>
+        <Association Name="FK_CTHDN_Sanpham">
+          <End Type="QUANLILAPTOPModel.Sanpham" Role="Sanpham" Multiplicity="0..1" />
+          <End Type="QUANLILAPTOPModel.CTHDN" Role="CTHDN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sanpham">
+              <PropertyRef Name="maSP" />
+            </Principal>
+            <Dependent Role="CTHDN">
+              <PropertyRef Name="maSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DH_Khachhang">
+          <End Type="QUANLILAPTOPModel.Khachhang" Role="Khachhang" Multiplicity="0..1" />
+          <End Type="QUANLILAPTOPModel.DH" Role="DH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Khachhang">
+              <PropertyRef Name="maKH" />
+            </Principal>
+            <Dependent Role="DH">
+              <PropertyRef Name="maKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DH_Nhanvien">
+          <End Type="QUANLILAPTOPModel.Nhanvien" Role="Nhanvien" Multiplicity="0..1" />
+          <End Type="QUANLILAPTOPModel.DH" Role="DH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nhanvien">
+              <PropertyRef Name="maNV" />
+            </Principal>
+            <Dependent Role="DH">
+              <PropertyRef Name="maNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CTDHB">
+          <Key>
+            <PropertyRef Name="maCTDH" />
+          </Key>
+          <Property Name="maDH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="maCTDH" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="maSP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Giaban" Type="Int32" />
+          <Property Name="thanhtien" Type="Int32" />
+          <NavigationProperty Name="DH" Relationship="QUANLILAPTOPModel.FK_CTDHB_DH" FromRole="CTDHB" ToRole="DH" />
+          <NavigationProperty Name="Sanpham" Relationship="QUANLILAPTOPModel.FK_CTDHB_Sanpham" FromRole="CTDHB" ToRole="Sanpham" />
+        </EntityType>
+        <Association Name="FK_CTDHB_DH">
+          <End Type="QUANLILAPTOPModel.DH" Role="DH" Multiplicity="0..1" />
+          <End Type="QUANLILAPTOPModel.CTDHB" Role="CTDHB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DH">
+              <PropertyRef Name="maDH" />
+            </Principal>
+            <Dependent Role="CTDHB">
+              <PropertyRef Name="maDH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CTDHB_Sanpham">
+          <End Type="QUANLILAPTOPModel.Sanpham" Role="Sanpham" Multiplicity="0..1" />
+          <End Type="QUANLILAPTOPModel.CTDHB" Role="CTDHB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sanpham">
+              <PropertyRef Name="maSP" />
+            </Principal>
+            <Dependent Role="CTDHB">
+              <PropertyRef Name="maSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QUANLILAPTOPModelStoreContainer" CdmEntityContainer="QUANLILAPTOPEntities">
+          <EntitySetMapping Name="CTHDNs">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.CTHDN">
+              <MappingFragment StoreEntitySet="CTHDN">
+                <ScalarProperty Name="maHDN" ColumnName="maHDN" />
+                <ScalarProperty Name="maCTHDN" ColumnName="maCTHDN" />
+                <ScalarProperty Name="maSP" ColumnName="maSP" />
+                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+                <ScalarProperty Name="Gianhap" ColumnName="Gianhap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTSPs">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.CTSP">
+              <MappingFragment StoreEntitySet="CTSP">
+                <ScalarProperty Name="Screem" ColumnName="Screem" />
+                <ScalarProperty Name="VGA" ColumnName="VGA" />
+                <ScalarProperty Name="HDD" ColumnName="HDD" />
+                <ScalarProperty Name="maSP" ColumnName="maSP" />
+                <ScalarProperty Name="maCTSP" ColumnName="maCTSP" />
+                <ScalarProperty Name="CPU" ColumnName="CPU" />
+                <ScalarProperty Name="RAM" ColumnName="RAM" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HDNs">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.HDN">
+              <MappingFragment StoreEntitySet="HDN">
+                <ScalarProperty Name="maHDN" ColumnName="maHDN" />
+                <ScalarProperty Name="maNCC" ColumnName="maNCC" />
+                <ScalarProperty Name="maNV" ColumnName="maNV" />
+                <ScalarProperty Name="Thanhtien" ColumnName="Thanhtien" />
+                <ScalarProperty Name="Ngaynhap" ColumnName="Ngaynhap" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Khachhangs">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.Khachhang">
+              <MappingFragment StoreEntitySet="Khachhang">
+                <ScalarProperty Name="maKH" ColumnName="maKH" />
+                <ScalarProperty Name="tenKH" ColumnName="tenKH" />
+                <ScalarProperty Name="Diachi" ColumnName="Diachi" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiSPs">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.LoaiSP">
+              <MappingFragment StoreEntitySet="LoaiSP">
+                <ScalarProperty Name="maLoai" ColumnName="maLoai" />
+                <ScalarProperty Name="tenLoai" ColumnName="tenLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NCCs">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.NCC">
+              <MappingFragment StoreEntitySet="NCC">
+                <ScalarProperty Name="maNCC" ColumnName="maNCC" />
+                <ScalarProperty Name="tenNCC" ColumnName="tenNCC" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nhanviens">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.Nhanvien">
+              <MappingFragment StoreEntitySet="Nhanvien">
+                <ScalarProperty Name="maNV" ColumnName="maNV" />
+                <ScalarProperty Name="tenNV" ColumnName="tenNV" />
+                <ScalarProperty Name="Chucvu" ColumnName="Chucvu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sanphams">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.Sanpham">
+              <MappingFragment StoreEntitySet="Sanpham">
+                <ScalarProperty Name="maLoai" ColumnName="maLoai" />
+                <ScalarProperty Name="maSP" ColumnName="maSP" />
+                <ScalarProperty Name="tenSP" ColumnName="tenSP" />
+                <ScalarProperty Name="Giaban" ColumnName="Giaban" />
+                <ScalarProperty Name="Hinhanh" ColumnName="Hinhanh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tintucs">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.tintuc">
+              <MappingFragment StoreEntitySet="tintuc">
+                <ScalarProperty Name="maLoaiTT" ColumnName="maLoaiTT" />
+                <ScalarProperty Name="maTT" ColumnName="maTT" />
+                <ScalarProperty Name="maNV" ColumnName="maNV" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+                <ScalarProperty Name="nguoidang" ColumnName="nguoidang" />
+                <ScalarProperty Name="ngaydang" ColumnName="ngaydang" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="noidungCT" ColumnName="noidungCT" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loaiTTs">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.loaiTT">
+              <MappingFragment StoreEntitySet="loaiTT">
+                <ScalarProperty Name="tenLoaiTT" ColumnName="tenLoaiTT" />
+                <ScalarProperty Name="maLoaiTT" ColumnName="maLoaiTT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DHs">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.DH">
+              <MappingFragment StoreEntitySet="DH">
+                <ScalarProperty Name="trangthaidonhang" ColumnName="trangthaidonhang" />
+                <ScalarProperty Name="tienvat" ColumnName="tienvat" />
+                <ScalarProperty Name="tongsotien" ColumnName="tongsotien" />
+                <ScalarProperty Name="taikhoannh" ColumnName="taikhoannh" />
+                <ScalarProperty Name="socmtndnguoinhan" ColumnName="socmtndnguoinhan" />
+                <ScalarProperty Name="socmtndkh" ColumnName="socmtndkh" />
+                <ScalarProperty Name="sodiennguoinhan" ColumnName="sodiennguoinhan" />
+                <ScalarProperty Name="sodienthoaikhachhang" ColumnName="sodienthoaikhachhang" />
+                <ScalarProperty Name="diachigiaohang" ColumnName="diachigiaohang" />
+                <ScalarProperty Name="diachikhachhang" ColumnName="diachikhachhang" />
+                <ScalarProperty Name="hovaten" ColumnName="hovaten" />
+                <ScalarProperty Name="Ngayban" ColumnName="Ngayban" />
+                <ScalarProperty Name="Thanhtien" ColumnName="Thanhtien" />
+                <ScalarProperty Name="maNV" ColumnName="maNV" />
+                <ScalarProperty Name="maKH" ColumnName="maKH" />
+                <ScalarProperty Name="maDH" ColumnName="maDH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTDHBs">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.CTDHB">
+              <MappingFragment StoreEntitySet="CTDHB">
+                <ScalarProperty Name="thanhtien" ColumnName="thanhtien" />
+                <ScalarProperty Name="Giaban" ColumnName="Giaban" />
+                <ScalarProperty Name="maSP" ColumnName="maSP" />
+                <ScalarProperty Name="maCTDH" ColumnName="maCTDH" />
+                <ScalarProperty Name="maDH" ColumnName="maDH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logins">
+            <EntityTypeMapping TypeName="QUANLILAPTOPModel.login">
+              <MappingFragment StoreEntitySet="login">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

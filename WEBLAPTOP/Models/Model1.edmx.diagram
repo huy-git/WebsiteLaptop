@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9a094b501e9b4c56a4a98ed75c3497ce" Name="Diagram1">
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.CTHDN" Width="1.5" PointX="8.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.CTSP" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.HDN" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.Khachhang" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.LoaiSP" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.NCC" Width="1.5" PointX="3.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.Nhanvien" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.Sanpham" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.tintuc" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <AssociationConnector Association="QUANLILAPTOPModel.FK_CTHDN_HDN" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLILAPTOPModel.FK_CTSP_Sanpham" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLILAPTOPModel.FK_HDN_NCC" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLILAPTOPModel.FK_HDN_Nhanvien" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLILAPTOPModel.FK_Sanpham_LoaiSP" ManuallyRouted="false" />
+        <AssociationConnector Association="QUANLILAPTOPModel.FK_tintuc_Nhanvien" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.loaiTT" PointX="7.375" PointY="3.875" Width="1.5" />
+        <AssociationConnector Association="QUANLILAPTOPModel.FK_tintuc_loaiTT" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.DH" Width="1.5" PointX="3" PointY="6.625" />
+        <AssociationConnector Association="QUANLILAPTOPModel.FK_CTHDN_Sanpham" />
+        <AssociationConnector Association="QUANLILAPTOPModel.FK_DH_Khachhang" />
+        <AssociationConnector Association="QUANLILAPTOPModel.FK_DH_Nhanvien" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.CTDHB" Width="1.5" PointX="8.25" PointY="6.875" />
+        <AssociationConnector Association="QUANLILAPTOPModel.FK_CTDHB_DH" />
+        <AssociationConnector Association="QUANLILAPTOPModel.FK_CTDHB_Sanpham" />
+        <EntityTypeShape EntityType="QUANLILAPTOPModel.login" Width="1.5" PointX="9.375" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,133 @@
+﻿@using WEBLAPTOP.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Sanpham> listspkm = ViewBag.SPKM;
+    List<Sanpham> listspm = ViewBag.SPM;
+    List<Sanpham> listspnb = ViewBag.SPNB;
+    List<LoaiSP> loaisp = ViewBag.danhmuc;
+}
+<style>
+    #tieude {
+        width: 89.5%;
+        margin-left: 97px;
+        color: white
+    }
+
+    #sanpham {
+        width: 91%;
+        margin-left: 4.5%;
+    }
+</style>
+<div class="col-md-12  row" style="background-color:whitesmoke;margin-bottom:30px">
+    <div id="menudoc" class="col-md-3">
+        <p class="SanPham"><i class="fas fa-bars"></i>   Sản Phẩm</p>
+        <ul class="list-group">
+            @foreach (var item in loaisp)
+            {
+                <li><a href="/Home/LoaiSP?maloai=@item.maLoai" class="fas fa-laptop">  @item.tenLoai</a></li>
+            }
+            
+        </ul>
+
+    </div>
+    <aside id="demo" class="carousel slide col-md-9" data-ride="carousel">
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/IMG/s1.jpg" />
+            </div>
+            <div class="carousel-item">
+                <img src="~/IMG/s2.jpg" />
+            </div>
+            <div class="carousel-item">
+                <img src="~/IMG/s3.png" />
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </aside>
+
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="cachxem" style="margin-left:250px;margin-top:10px"><i class="fas fa-laptop"></i>  CÁCH XEM CẤU HÌNH</div>
+        <div id="3anh">
+            <img src="~/IMG/image2.jpg" style="margin-left:100px;width:490px;height:230px;margin-top:-70px" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="cachxem" style="margin-left:240px;margin-top:10px"><i class="fab fa-facebook-messenger"></i>  THỦ THUẬT</div>
+        <div id="3anh">
+            <img src="~/IMG/tt.jpg" style="margin-left:50px;width:490px;height:230px;margin-top:-70px;" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="cachxem" style="margin-left:220px;margin-top:10px"><i class="fas fa-question"></i>  HỖ TRỢ</div>
+        <div id="3anh">
+            <img src="~/IMG/Sp.jpg" style="margin-left:10px;width:490px;height:230px;margin-top:-70px" />
+        </div>
+    </div>
+</div>
+<div>
+    <p id="tieude">Sản Phẩm Bán Chạy</p>
+    <div class="col-md-12 row" id="sanpham">
+        @foreach (var sp in listspkm)
+        {
+            <div id="sp" class="col-md-3">
+                <a href="/Home/Chitiet?maSP=@sp.maSP">
+                    <img src="~/IMG/Sp/@sp.Hinhanh" />
+                </a>
+                <div class="ttsp">
+                    <p style="width:239px;height:48px;padding-top:16px;margin-left:70px;color:red;font-weight:bold">@sp.tenSP</p>
+                    <p style="width:200px;height:50px;background-color:red;border-radius:20px;text-align:center;margin-left:20px;padding-top:16px;margin-left:90px; color:white;border-bottom:30px;">@sp.Giaban<span>đ</span></p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div>
+    <p id="tieude">Sản Phẩm Mới</p>
+    <div class="col-md-11 row" id="sanpham">
+        @foreach (var sp in listspm)
+        {
+            <div id="sp" class="col-md-3">
+                <a href="/Home/Chitiet?maSP=@sp.maSP">
+                    <img src="~/IMG/Sp/@sp.Hinhanh" />
+                </a>
+                <div class="ttsp">
+                    <p style="width:239px;height:48px;padding-top:16px;margin-left:70px;color:red;font-weight:bold">@sp.tenSP</p>
+                    <p style="width:200px;height:50px;background-color:red;border-radius:20px;text-align:center;margin-left:20px;padding-top:16px;margin-left:90px; color:white;border-bottom:30px;">@sp.Giaban<span>đ</span></p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div>
+    <p id="tieude">Sản Phẩm Nổi Bật</p>
+    <div class="col-md-11 row" id="sanpham">
+
+        @foreach (var sp in listspnb)
+        {
+
+            <div id="sp" class="col-md-3">
+                <a href="/Home/Chitiet?maSP=@sp.maSP">
+                    <img src="~/IMG/Sp/@sp.Hinhanh" />
+                </a>
+                <div class="ttsp">
+                    <p style="width:239px;height:48px;padding-top:16px;margin-left:70px;color:red;font-weight:bold">@sp.tenSP</p>
+                    <p style="width:200px;height:50px;background-color:red;border-radius:20px;text-align:center;margin-left:20px;padding-top:16px;margin-left:90px; color:white;border-bottom:30px;">@sp.Giaban<span>đ</span></p>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>

@@ -1,0 +1,455 @@
+﻿
+@model List<WEBLAPTOP.Models.loaiTT>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/c9e0d0ccd3.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color:whitesmoke
+        }
+
+        header {
+            background-color: white
+        }
+
+        #logo img {
+            width: 200px;
+            height: 200px;
+            margin-left: 200px;
+            margin-top: -30px;
+        }
+
+        #search {
+            width: 50px;
+            height: 38px;
+        }
+
+        #timkiem {
+            top: 50px;
+        }
+        /*menu ngang*/
+        #p_menu #menungang li {
+            display: inline-table;
+            position: relative;
+            margin-left: 30px;
+            margin-top:38px;
+        }
+
+            #p_menu #menungang li a {
+                display: block;
+                color: black;
+                text-align: center
+            }
+
+            #p_menu #menungang li ul {
+                width: 800px;
+                position: absolute;
+                z-index: 100;
+                height: 50px;
+                line-height: 50px;
+                display: none;
+                margin-left: -50px
+            }
+
+                #p_menu #menungang li ul li {
+                    border-bottom: 1px dotted #ffd800;
+                    margin-top:6px;
+                    
+                }
+
+            #p_menu #menungang li:hover ul {
+                display: block;
+            }
+
+        #menungang li a p {
+            color: black
+        }
+
+        #p_menu ul li ul li a {
+            color: black
+        }
+        /*menu dọc*/
+        /*MENU DỌC*/
+        .SanPham
+        {
+            background-color:red;
+            width:300px;
+            margin-left:360px;
+            height:80px;
+            padding:12px;
+            color:white;
+            font-weight:bold;
+            font-size:15px;
+            margin-top:30px;
+            
+        }
+        #menudoc ul
+        {
+            background-color: white;
+            list-style-type: none;
+            width: 300px;
+            margin-left: 360px;
+            margin-top:-20px;
+        }
+
+        #menudoc li 
+        {
+            border-top: 1px solid rgb(136,136,136);
+            height: 80px;
+            line-height: 50px;
+            padding: 0 1em;
+        }
+
+        #menudoc a
+        {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 450px;
+            font-size: 16px;
+            line-height:50px;
+        }
+
+        #menudoc ul li
+        {
+            position: relative;
+        }
+            #menudoc ul li a:hover 
+            {
+                color: red;
+            }
+        /*Slide ảnh*/
+        #demo
+        {
+            margin-left: 700px;    
+            margin-top:-555px;
+
+        }
+
+        .carousel-inner img
+        {
+            width:730px;
+            height: 555px;
+        }
+        /*Tiêu đề loại*/
+        #tieude 
+        {
+            margin-top:20px;
+            width:97%;
+            
+            height:50px;
+            font-weight: bold;           
+            background-color: red;
+            line-height:50px;
+            text-align:center;
+            font-size:20px;
+        }
+
+            #tieude p
+            {
+            
+                color: white;
+                /*margin-top:50px;
+                margin-left: -15px;
+                padding-left: 10px;*/
+                text-align:center;
+            }
+            /*Sản phẩm*/
+        #sp {
+            width: 250px;
+            height: 400px;
+            background-color: white;
+            text-align: center;
+            margin-top: 20px;
+            border-right: 1px solid whitesmoke
+        }
+
+            #sp img {
+                width: 200px;
+                margin-top: 20px;
+                height: 150px;
+            }
+
+        #sp {
+            margin-top: 20px;
+        }
+        /*Quảng cáo*/
+        #QC img
+        {
+            width: 490px;
+            height: 200px;
+        }
+
+        #Dangki
+        {
+            border-top: 1px solid #808080;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        #text h1 
+        {
+            color: red;
+            font-size: 30px;
+            margin-left: 150px;
+            margin-top: 20px;
+        }
+
+        #text h2 
+        {
+            font-size: 16px;
+            margin-left: 150px;
+        }
+
+        #mail       
+        {
+            margin-top: 20px;
+            margin-left: -55px
+        }
+
+            #mail input 
+            
+            {
+                height: 50px;
+                width: 400px;
+            }
+
+            #mail span
+            {
+                height: 50px;
+                background-color: red;
+                color: white;
+            }
+            /*Footer*/
+        #end {
+            background-color: black;
+            color: white;
+            height: 50px;
+            line-height: 50px;
+        }
+
+            #end p {
+                font-size: 14px;
+                text-align: center
+            }
+            .cachxem 
+            {
+                margin-bottom:100px;
+                margin-left:60px;
+               
+            }
+            #3anh img
+            {
+                width:200px;
+            }
+          
+          
+    </style>
+</head>
+<body>
+    <header class="row">
+        <div class="col-md-3" id="logo">
+            <a href="/Home/Index"><img src="~/IMG/logo-may-tinh(3).jpg" /></a>
+        </div>
+        <div class="input-group col-md-3" id="timkiem">
+            <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+            <div class="input-group-append" id="search">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+        </div>
+        <div class="col-md-5 row" id="p_menu">
+            <ul id="menungang">
+                <li>
+                    <a href="/Home/LoaiSP">
+                        <i class="fas fa-laptop"></i>
+                        <p>
+                            Laptop catalog
+                        </p>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="#" style="color:red">
+                                Laptop Dell
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" style="color:red">
+                                Laptop HP
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" style="color:red">
+                                Laptop Lenovo
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" style="color:red">
+                                Laptop Gaming
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" style="color:red">
+                                Macbook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" style="color:red">
+                                Phụ kiện
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-tools"></i>
+                        <p>
+                            After-sales warranty
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fab fa-salesforce"></i>
+                        <p>
+                            Sale
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Home/Tintuc">
+                        <i class="fas fa-newspaper"></i>
+                        <p>
+                            News
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fab fa-buy-n-large"></i>
+                        <p>
+                            Shopping guide
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Home/Thanhtoanshow">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>
+                            Cart
+                        </p>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </header>
+    <div class="col-md-12  row" style="background-color:whitesmoke;margin-bottom:30px">
+       
+       
+
+    </div>
+    <main style="background-color:whitesmoke">
+        @RenderBody()
+        <section>
+            <div class="col-lg-12 row" id="Quangcao" style="width:91.6%;
+            margin-left:6.1%;margin-top:30px;">
+                <div id="QC" class="col-md-4">
+                    <img src="~/IMG/73.jpg" />
+                </div>
+                <div id="QC" class="col-md-4">
+                    <img src="~/IMG/72.jpg" />
+                </div>
+                <div id="QC" class="col-md-4">
+                    <img src="~/IMG/75.jpg" />
+                </div>
+            </div>
+            <div class="col-md-12 row" id="Dangki">
+                <div id="text" class="col-md-6">
+                    <h1>Đăng kí ngay!</h1>
+                    <h2>Mời bạn nhập email để nhận những thông tin mới nhất từ cửa hàng</h2>
+                </div>
+                <div class="input-group col-md-6" id="mail">
+                    <input type="text" class="form-control" placeholder="Nhập địa chỉ Email của bạn">
+                    <div class="input-group-append" id="search">
+                        <span class="input-group-text"><i class="fas fa-paper-plane"></i></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <p style="font-size: 17px;font-family: sans-serif;"><b>THÔNG TIN LIÊN HỆ</b></p>
+                    <ul>
+                        <li class="a">Địa chỉ:  Số 123 Trần Đại Nghĩa, phường Bách Khoa, quân Hai Bà Trưng, TP Hà Nội</li>
+                        <li class="a">GPKD hộ cá thể 01D8022773 được cấp vào ngày 27/05/2020 do UBND quận Hai Bà Trưng, TP Hà Nội cấp</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <p style="font-size: 17px;font-family: sans-serif;"><b>VỀ LAPTOP123</b></p>
+                    <ul>
+                        <li class="a">Giới thiệu laptop123</li>
+                        <li class="a">Thông tin tuyển dụng</li>
+                        <li class="a">Lịch làm việc</li>
+                        <li class="a">Sơ đồ chỉ đường</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <p style="font-size: 17px;font-family: sans-serif;"><b>CHÍNH SÁCH KHÁCH HÀNG</b></p>
+                    <ul>
+                        <li class="a">Bảo mật thông tin</li>
+                        <li class="a">Chính sách bảo hành</li>
+                        <li class="a">Chính sách vận chuyển</li>
+                        <li class="a">Phương thức thanh toán</li>
+                        <li style="list-style:none">
+                            <img class="iconTT" src="~/IMG/visa.png" width="54" />
+                            <img class="iconTT" src="~/IMG/mastercard.png" width="54" />
+                            <img class="iconTT" src="~/IMG/the-ATM_1505144247.jpg" width="54" />
+                            <img class="iconTT" src="~/IMG/speedy-cash (2).jpg" width="54" />
+                            <img class="iconTT" src="~/IMG/4143_thebank_cachsudunginternetbankingdekhongbimattienoan_1524545373.jpg" width="54" />
+                            <img class="iconTT" src="~/IMG/tra-gop.jpg" width="54" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <p style="font-size: 17px;font-family: sans-serif;"><b>KẾT NỐI VỚI CHÚNG TÔI</b></p>
+                    <ul>
+                        <li class="a">Hotline 0986869999</li>
+                        <li class="a">Email: Laptop123@gmail.com</li>
+                        <li class="a">
+                            <a href="https://www.facebook.com/Laptop123vn/">Fanpage facebook laptop123.vn</a>
+                        </li>
+                        <li class="a">
+                            <img class="bct" src="~/IMG/bct.png" width="160" height="60" style="margin-top:10px;" />
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 " id="end">
+            <p>Thiết kế và phát triển Website bởi Duc Huy</p>
+        </div>
+    </footer>
+   
+</body>
+</html>
+

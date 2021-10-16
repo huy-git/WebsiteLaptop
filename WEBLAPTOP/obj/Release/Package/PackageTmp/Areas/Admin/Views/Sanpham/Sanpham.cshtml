@@ -1,0 +1,268 @@
+﻿@model IEnumerable<WEBLAPTOP.Models.Sanpham>
+
+@{
+    ViewBag.Title = "Sanpham";
+    Layout = "~/Areas/Admin/Views/Shared/_admin.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Getdata_view</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .anh img {
+            width: 100px;
+        }
+
+        .action {
+            margin-top: 200px
+        }
+
+        #SetAdminList td {
+            margin-top: 100px;
+        }
+
+        .content {
+            margin-left: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 style="padding-bottom:15px;color:red;" class="box-title">Danh sách hiển thị Sản Phẩm</h3>
+                        <a href="#" class="btn btn-primary" onclick="them()">Add</a>
+                    </div>
+                    <!-- /.box-header -->
+
+                    <table class="dataTable table table-striped table-bordered" id="Datatables">
+                        <thead>
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <th>Hình ảnh</th>
+                                <th>Mã loại</th>
+                                <th>Giá bán</th>
+                                <th>Action(Edit)</th>
+                                <th>Action(Delete)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="SetAdminList">
+                            @if (Model != null && Model.Count() > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.tenSP</td>
+                                        <td class="anh">
+                                            <img src="~/IMG/sp/@item.Hinhanh" />
+                                        </td>
+                                        <td>@item.maLoai</td>
+                                        <td>@item.Giaban</td>
+                                        <td class="action" style="text-align:center"onclick="return getbymaSP('@item.maSP')">
+                                            <a  class="btn btn-warning fa fa-pencil"></a>
+                                        </td>
+                                        <td class="action" style="text-align:center;"onclick="return xoa('@item.maSP')">
+                                            <a class="btn btn-danger fa fa-trash" ></a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                @*chạy thư viện trước*@
+                <script src="~/Asset/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
+                <script src="~/Asset/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+                <script src="~/Asset/Admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+                <script src="~/Asset/Admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+                @*Xong mới chạy table*@
+                <script>
+                    $("#Datatables").DataTable();
+                </script>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <label>Tên Sản Phẩm</label>
+                    <input type="text" id="maSP" hidden />
+                    <input type="text" id="tenSP" placeholder="Nhap ten san pham" class="form-control" />
+                    <br />
+                    <label>Hình Ảnh</label>
+                    <input type="text" id="Hinhanh" />
+                    <label style="margin-top:10px">
+                        Tên Loại
+                        <select style="margin-left:15px" id="maLoai">
+                            <option value="10010"> LAPTOP DELL</option>
+                            <option value="10020"> LAPTOP HP</option>
+                            <option value="10030"> LAPTOP LENOVO THINKPAD</option>
+                            <option value="10040"> LAPTOP GAMING</option>
+                            <option value="10050"> LAPTOP MACBOOK</option>
+                            <option value="10060"> PHỤ KIỆN</option>
+                        </select>
+                    </label>
+                    <br />
+                    <label>Giá Bán</label>
+                    <input type="text" id="Giaban" placeholder="Nhap Gia ban" class="form-control" />
+                    <br />
+
+                </div>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-primary " data-dismiss="modal">Close</button>*@
+                    <button type="button" id="btnAdd" onclick="return _add()" class="btn btn-success ">Lưu thông tin </button>
+                    <button type="button" id="btnUpdate" onclick="return edit();" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+</body>
+</html>
+
+
+@*<script src="~/Scripts/Themsuaxoa.js"></script>*@
+
+@*Xong mới chạy table*@
+<script type="text/javascript">
+    $(Document).ready(function () {
+        $('#Datatables').DataTable();
+    });
+
+</script>
+
+
+<script>
+      function them() {
+    $('#tenSP').val('');
+    $('#Hinhanh').val('');
+    $('#Giaban').val('');
+    $('#btnAdd').val('show');
+    $('#myModal').modal("show");//hien thi table
+    $('.modal-title').html('Thêm thông tin');//them thong tin
+    $('#btnUpdate').hide();
+}
+//
+function _add() {
+    var obj = {
+       tenSP: $('#tenSP').val(),
+        Hinhanh: $('#Hinhanh').val(),
+        Giaban: $('#Giaban').val(),
+        maLoai: $('#maLoai').val(),
+    }
+    $.ajax({
+        url: "/Admin/Sanpham/create",
+        data: JSON.stringify(obj),
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            // $('#myModal').modal('hide');
+
+            location.reload();//load lai trang
+            alert("Đã thêm thành công");
+            //window.location = data.action;
+
+        },
+        error: function (errmessage) {
+            alert(errmessage.responseText);
+        }
+    });
+}
+function getbymaSP(masp)
+{
+    $.ajax({
+        type: 'POST',
+        url: '/Sanpham/get',
+        dataType: 'json',
+        data: {
+            maSP: masp
+        },
+        success: function (data) {
+            $('#maSP').val(data.dt.maSP);
+            $('#tenSP').val(data.dt.tenSP);
+            $('#Hinhanh').val(data.dt.Hinhanh);
+            $('#Giaban').val(data.dt.Giaban);
+           
+
+            //
+            $('#myModal').modal('show');
+            $('#btnAdd').hide();
+            $('.modal-title').html('Sửa sản phẩm');
+            $('#btnUpdate').show();
+        },
+        error: function (data) {
+
+            showmessage("Error:", data.message);
+        },
+
+    });
+}
+function edit() {
+    var obj = {
+        maSP: $('#maSP').val(),
+        tenSP: $('#tenSP').val(),
+        Hinhanh: $('#Hinhanh').val(),
+        Giaban: $('#Giaban').val()  
+    }
+    debugger
+    $.ajax({
+        url: '/Sanpham/edit',
+        //data: JSON.stringify(obj),
+        data: { sp: obj },
+        type: "POST",
+        //contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            alert("Đã sửa thành công");
+            location.reload();
+
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+}
+//xoa
+function xoa(maSP) {
+    var cf = confirm("Bạn có muốn xóa không ?");
+    if (cf) {
+        $.ajax({
+            type: "post",
+            url: '/Sanpham/delete',
+            datatype: "json",
+            data: {
+                maSP: maSP,//controler
+            },
+            success: function (data) {
+                location.reload();
+                //alert(data.dt.id);
+                alert(" Xóa thành công.");
+
+            },
+            error: function (data) {
+                alert("Không thể xóa");
+                showmessage("Error:", data.message);
+            },
+        });
+    }
+}
+
+    </script>

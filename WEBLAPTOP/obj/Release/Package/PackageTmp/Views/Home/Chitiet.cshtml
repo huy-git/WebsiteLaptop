@@ -1,0 +1,170 @@
+﻿@using WEBLAPTOP.Models
+
+@{
+    ViewBag.Title = "Chitiet";
+    Layout = "~/Views/Shared/_Layout - CTSP.cshtml";
+    CTSP ctsp = (CTSP)ViewBag.SanPhams;
+}
+
+<style>
+
+    .ThongtinSP {
+        margin-left: 800px;
+        margin-top: -500px;
+    }
+
+        .ThongtinSP.h3 {
+            margin-bottom: 5px;
+            color: red
+        }
+
+    .TS {
+        margin-top: 20px;
+        margin-left: 215px;
+    }
+
+        .TS h5 {
+            color: red;
+        }
+    .
+</style>
+<div>
+    <div class="Chitiet col-md-12 row">
+        <div class="Sanpham col-md-4">
+            <img class="img" src="~/IMG/Sp/@ctsp.Sanpham.Hinhanh" style="width:500px;height:500px;margin-left:200px;" />
+        </div>
+        <div class="ThongtinSP col-md-4">
+            <h1> @ctsp.Sanpham.tenSP</h1>
+            <h3>Mã Sản Phẩm: @ctsp.maCTSP</h3>
+            <h3>Giá bán: @ctsp.Sanpham.Giaban đ</h3>
+            <div class="buttons_added">
+                <input aria-label="quantity" class="input-qty" max="10" min="1" name="" id="soluong" type="number" value="1" />
+            </div>
+            <button class="btn btn-danger" onclick="muahang(@ctsp.Sanpham.maSP)" title="Add to Cart" style="margin-top:10px;">
+                <span>Add to Cart</span>
+            </button>
+        </div>
+        <div class="row">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" style="margin-left:230px;margin-top:30px;" role="tablist">
+                <li role="presentation" class="active"><a href="#Mota" aria-controls="Mota" role="tab" data-toggle="tab">Mô Tả </a></li>
+                
+                <li role="presentation" style="margin-left:30px"><a href="#Thongsokythuat" aria-controls="Thongsokythuat" role="tab" data-toggle="tab">Thông số kỹ thuật</a></li>
+
+                <li role="presentation" style="margin-left:40px"><a href="#Danhgia" aria-controls="Danhgia" role="tab" data-toggle="tab">Đánh giá</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content" >
+                <div role="tabpanel" class="tab-pane active " style="margin-left:-305px; margin-top:100px;" id="Mota">
+                        <h6>
+                            Mẫu laptop đem đến trải nghiệm mới cho người dùng.
+                            <br />
+                            Một siêu phẩm của năm 2020.
+                        </h6>
+                </div>
+                <div role="tabpanel" class="tab-pane col-lg-12 col-sm-12"style="margin-left:-325px; margin-top:100px;" id="Thongsokythuat">
+                    <table class="table table-hover table-striped table-responsive">
+
+                        <tr>
+                            <td>Tên sản phẩm:</td>
+                            <td>@ctsp.Sanpham.tenSP .</td>
+                        </tr>
+                        <tr>
+                            <td>CPU:</td>
+                            <td>@ctsp.CPU .</td>
+                        </tr>
+                        <tr>
+                            <td>RAM:</td>
+                            <td>@ctsp.RAM</td>
+                        </tr>
+                        <tr>
+                            <td>HDD:</td>
+                            <td>@ctsp.HDD</td>
+                        </tr>
+                        <tr>
+                            <td>VGA:</td>
+                            <td>@ctsp.VGA</td>
+                        </tr>
+                        <tr>
+                            <td>Screem:</td>
+                            <td>@ctsp.Screem</td>
+                        </tr>
+                        <tr>
+                            <td>PIN:</td>
+                            <td>@ctsp.PIN</td>
+                        </tr>
+                        
+
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane"style="margin-left:-630px; margin-top:80px;" id="Danhgia">
+                    <br />
+                    <form class="form-horizontal col-sm-12" style="margin-left:300px">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <textarea class="form-control" rows="10" placeholder="Gửi đánh giá của bạn vào đây..."></textarea>
+                            </div>
+
+                        </div>
+                        <div class="form-group" style="margin-left:15px">
+                            <div class="col-sm-offset-2 ">
+                                <button type="submit" class="btn btn-primary">Đánh giá</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        @*<div class="TS">
+            <h3>Thông Số Kĩ Thuật</h3>
+            <h5>Tên sản phẩm :  @ctsp.Sanpham.tenSP .</h5>
+            <h5>CPU :  @ctsp.CPU .</h5>
+            <h5>RAM :  @ctsp.RAM .</h5>
+            <h5>Ổ Cứng:  @ctsp.HDD .</h5>
+            <h5>Card Đồ Họa:  @ctsp.VGA .</h5>
+            <h5>Màn Hình :  @ctsp.Screem .</h5>
+            <h5>Pin :  @ctsp.PIN .</h5>
+        </div>*@
+    </div>
+    
+</div>
+<script>
+    function muahang(id) {
+        var soluong = document.getElementById("soluong").value;
+       // alert("thong tin=" + id + ": soluong=" + soluong);
+        document.location.href = "giohang?id=" + id + "&soluong=" + soluong;
+        //window.location=myURL;
+    }
+</script>
+@*@section scripts{
+    <script src="/Content/js/jquery-1.10.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/Content/js/jquery-ui.js"></script>
+    <script src="/Content/js/jquery.scrollbox.js"></script>
+    <script>
+        $(function () {
+            $('#demo5').scrollbox({
+                linear: false,  // Scroll method
+                startDelay: 2,  // Start delay (in seconds)
+                delay: 3,   // Delay after each scroll event (in seconds)
+                step: 5,// Distance of each single step (in pixels)
+                speed: 32,  // Delay after each single step (in milliseconds)
+                switchItems: 1, // Items to switch after each scroll event
+                direction: 'vertical',
+                distance: 'auto',
+                autoPlay: true,
+                onMouseOverPause: true,
+                paused: false,
+                queue: null
+            });
+            $('#demo5-backward').click(function () {
+                $('#demo5').trigger('backward');
+            });
+            $('#demo5-forward').click(function () {
+                $('#demo5').trigger('forward');
+            });
+        });
+    </script>
+}*@

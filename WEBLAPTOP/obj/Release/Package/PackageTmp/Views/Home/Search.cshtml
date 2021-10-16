@@ -1,0 +1,34 @@
+﻿@using WEBLAPTOP.Models;
+@{
+    ViewBag.Title = "Search";
+    List<Sanpham> sp = ViewBag.data;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport"content="width=device-width"/>
+    <title>Index1</title>
+</head>
+<body>
+    <div class="col-12 row" style=" width: 91%;margin-left: 4.5%;">
+        @if (sp.Count() > 0)
+        {
+            foreach (var item in sp)
+            {
+                <div id="sp" class="col-md-3">
+                    <a href="/Home/Chitiet?maSP=@item.maSP">
+                        <img src="~/IMG/Sp/@item.Hinhanh" />
+                    </a>
+                    <div class="ttsp">
+                        <p>@item.tenSP</p>
+                        <p>@item.Giaban<span>đ</span></p>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</body>
+</html>
+

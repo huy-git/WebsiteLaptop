@@ -1,0 +1,50 @@
+﻿@using WEBLAPTOP.Models
+
+@{
+    ViewBag.Title = "LoaiSP";
+    Layout = "~/Views/Shared/_Layout - LoaiSP.cshtml";
+    List<LoaiSP> listsp = ViewBag.ds;
+    LoaiSP loaiii = ViewBag.Loai;
+}
+<style>
+    #sanpham
+    {
+        width:97%;
+        margin-left:2px;
+    }
+  #sp
+  {
+      width:400px;
+  }
+  .ttsp p
+  {
+    text-align:center;
+  }
+</style>
+    <section>
+        <div>
+            <div id="tieude">
+                <p>@loaiii.tenLoai</p>
+            </div>
+            <div id="sanpham" class="row">
+                @foreach (var item in loaiii.Sanphams)
+                {
+                <div id="sp" class="col-md-3">
+                    <a href="/Home/Chitiet?maSP=@item.maSP">
+                        <img src="~/IMG/Sp/@item.Hinhanh" />
+                    </a>
+                    <div class="ttsp">
+                        <p>@item.tenSP</p>
+                        <p>@item.Giaban<span>đ</span></p>
+
+                    </div>
+                </div>
+                        }
+                    </div>
+                </div>
+    </section>
+
+
+
+
+

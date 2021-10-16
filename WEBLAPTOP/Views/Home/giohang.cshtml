@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WEBLAPTOP.Models.shopcart>
+@{
+    ViewBag.Title = "giohang";
+    Layout = "~/Views/Shared/_Layout - Tintuc.cshtml";
+}
+
+<h2>giohang</h2>
+<div class="row">
+    <div class="card">
+        @if (Model != null)
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>TenSP</th>
+                        <th>So luong</th>
+                        <th>Don gia</th>
+                        <th>Thanh tien</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @item.id
+                        </td>
+                        <td>
+                            @item.tensp
+                        </td>
+                     
+                        <td>
+                            @item.soluong
+                        </td>
+                        <td>
+                            @item.dongia
+                                            </td>
+                        <td>
+                            @item.thanhtien
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
